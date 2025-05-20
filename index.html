@@ -13,6 +13,18 @@
       overflow-x: hidden;
     }
 
+.footer-description {
+  text-align: center;
+  font-size: 0.9em;
+  color: #888;
+  padding: 10px 20px;
+  border-top: 1px solid #eee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fafafa;
+  user-select: none;
+  margin-top: 40px;
+}
+
     .header {
       text-align: center;
       padding: 30px;
@@ -155,7 +167,9 @@
   </style>
 </head>
 <body>
-
+<footer class="footer-description">
+  This is a locally hosted server setup by <strong>iampavanyadav</strong>, developed using basic HTML, CSS, and JavaScript. The development and hosting environment runs on an Intel i5 M520 processor with 4GB of RAM.
+</footer>
   <audio autoplay loop>
     <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
     Your browser does not support the audio element.
@@ -230,7 +244,7 @@
     setInterval(createHeart, 300);
 
     // Chat box functionality
-    function sendMessage() {
+   function sendMessage() {
   const msg = chatInput.value.trim();
   if (msg) {
     const messageElement = document.createElement('div');
@@ -238,7 +252,7 @@
     chatMessages.appendChild(messageElement);
 
     const lowerMsg = msg.toLowerCase();
-    const patterns = ["happy", "hpy", "hapy", "happi", "hap","h","hi","hii","hello","he","Hi","Hii","hii","Hello","Happy","Hapy"];
+    const patterns = ["happy", "hpy", "hapy", "happi", "hap"];
     if (patterns.some(pat => lowerMsg.startsWith(pat))) {
       const replyElement = document.createElement('div');
       replyElement.textContent = "Happy Anniversary from Pawan ❤️";
