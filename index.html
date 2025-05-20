@@ -165,19 +165,35 @@
       cursor: pointer;
     }
 
-    .video-container {
-      max-width: 600px;
-      margin: 20px auto;
+    /* Video Section Styling */
+    .video-section {
       text-align: center;
-      z-index: 2;
-      position: relative;
+      padding: 30px 20px;
+      background: #fff5fa;
+      border-top: 1px solid #f0dce5;
+      margin-top: 40px;
+      border-radius: 20px 20px 0 0;
     }
 
-    video {
-      width: 100%;
+    .video-title {
+      font-size: 1.8em;
+      color: #d6336c;
+      margin-bottom: 10px;
+    }
+
+    .video-caption {
+      font-size: 1em;
+      color: #777;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .video-container {
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -198,7 +214,6 @@
 
   <div class="countdown" id="countdown"></div>
 
-
   <div class="gallery" id="gallery">
     <img src="photo1.jpeg" alt="Memory 1">
     <img src="photo2.jpeg" alt="Memory 2">
@@ -208,7 +223,7 @@
     <img src="photo6.jpeg" alt="Memory 6">
     <img src="photo7.jpeg" alt="Memory 7">
   </div>
-  
+
   <div class="chat-box">
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input">
@@ -216,19 +231,28 @@
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
-  <!-- 👧 Baby Video -->
-  <div class="video-container">
-    <video id="babyVideo" controls>
-      <source src="palak.mp4" type="video/mp4" poster="thumbnail.jpg">
-      Your browser does not support the video tag.
-    </video>
+
+  <!-- 🎬 Baby Video Section -->
+  <div class="video-section">
+    <h2 class="video-title">Our Little Palak 👧🏻❤️</h2>
+    <p class="video-caption">When our princess took her first ride and went "brr brrr"... unforgettable!</p>
+    <div class="video-container">
+      <video id="babyVideo" width="100%" controls poster="thumbnail.jpg">
+        <source src="palak.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
 
+  <!-- 👨‍💻 Footer -->
+  <footer class="footer-description">
+    This is a locally hosted server setup by <strong>iampavanyadav</strong>, developed using basic HTML, CSS, and JavaScript. The development and hosting environment runs on an Intel i5 M520 processor with 4GB of RAM.
+  </footer>
 
   <script>
     const gallery = document.getElementById('gallery');
     const countdownEl = document.getElementById('countdown');
-    const targetDate = new Date(2025, 4, 21, 0, 0, 0); // 21 May 2025
+    const targetDate = new Date(2025, 4, 21, 0, 0, 0);
 
     function updateCountdown() {
       const now = new Date();
@@ -237,7 +261,7 @@
       if (diff <= 0) {
         countdownEl.textContent = "🎉 Time's up! Enjoy your surprise! 🎉";
         gallery.classList.add('enabled');
-        alert("Happy Anniversary Ankita!");
+        alert(" Happy Anniversary! Ankita ");
         clearInterval(timer);
         return;
       }
@@ -274,7 +298,7 @@
         chatMessages.appendChild(messageElement);
 
         const lowerMsg = msg.toLowerCase();
-        const patterns = ["happy", "hpy", "hapy", "happi", "hap","hi","hello","hii","thank","th"];
+        const patterns = ["happy", "hpy", "hapy", "happi", "hap","hi","Hello","Hii","hii","Thank","Th","th"];
         if (patterns.some(pat => lowerMsg.startsWith(pat))) {
           const replyElement = document.createElement('div');
           replyElement.textContent = "Happy Anniversary from Pawan ❤️";
@@ -286,22 +310,6 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
     }
-
-    // 👧 Floating hearts hide on video play
-    const babyVideo = document.getElementById("babyVideo");
-    babyVideo.addEventListener("play", () => {
-      hearts.style.display = "none";
-    });
-    babyVideo.addEventListener("pause", () => {
-      hearts.style.display = "block";
-    });
-    babyVideo.addEventListener("ended", () => {
-      hearts.style.display = "block";
-    });
   </script>
-
-  <footer class="footer-description">
-    This is a locally hosted server setup by <strong>iampavanyadav</strong>, developed using basic HTML, CSS, and JavaScript. The development and hosting environment runs on an Intel i5 M520 processor with 4GB of RAM.
-  </footer>
 </body>
 </html>
