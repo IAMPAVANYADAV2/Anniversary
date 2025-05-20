@@ -13,17 +13,17 @@
       overflow-x: hidden;
     }
 
-.footer-description {
-  text-align: center;
-  font-size: 0.9em;
-  color: #888;
-  padding: 10px 20px;
-  border-top: 1px solid #eee;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fafafa;
-  user-select: none;
-  margin-top: 40px;
-}
+    .footer-description {
+      text-align: center;
+      font-size: 0.9em;
+      color: #888;
+      padding: 10px 20px;
+      border-top: 1px solid #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fafafa;
+      user-select: none;
+      margin-top: 40px;
+    }
 
     .header {
       text-align: center;
@@ -164,6 +164,21 @@
       border-radius: 8px;
       cursor: pointer;
     }
+
+    .video-container {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -183,6 +198,7 @@
 
   <div class="countdown" id="countdown"></div>
 
+
   <div class="gallery" id="gallery">
     <img src="photo1.jpeg" alt="Memory 1">
     <img src="photo2.jpeg" alt="Memory 2">
@@ -192,7 +208,7 @@
     <img src="photo6.jpeg" alt="Memory 6">
     <img src="photo7.jpeg" alt="Memory 7">
   </div>
-
+  
   <div class="chat-box">
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input">
@@ -200,6 +216,14 @@
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
+  <!-- 👧 Baby Video -->
+  <div class="video-container">
+    <video id="babyVideo" controls>
+      <source src="palak.mp4" type="video/mp4" poster="thumbnail.jpg">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
 
   <script>
     const gallery = document.getElementById('gallery');
@@ -213,7 +237,7 @@
       if (diff <= 0) {
         countdownEl.textContent = "🎉 Time's up! Enjoy your surprise! 🎉";
         gallery.classList.add('enabled');
-        alert(" Happy Anniversary! Ankita ");
+        alert("Happy Anniversary Ankita!");
         clearInterval(timer);
         return;
       }
@@ -242,29 +266,42 @@
     setInterval(createHeart, 300);
 
     // Chat box functionality
-   function sendMessage() {
-  const msg = chatInput.value.trim();
-  if (msg) {
-    const messageElement = document.createElement('div');
-    messageElement.textContent = msg;
-    chatMessages.appendChild(messageElement);
+    function sendMessage() {
+      const msg = chatInput.value.trim();
+      if (msg) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = msg;
+        chatMessages.appendChild(messageElement);
 
-    const lowerMsg = msg.toLowerCase();
-    const patterns = ["happy", "hpy", "hapy", "happi", "hap","hi","Hello","Hii","hii","Thank","Th","th"];
-    if (patterns.some(pat => lowerMsg.startsWith(pat))) {
-      const replyElement = document.createElement('div');
-      replyElement.textContent = "Happy Anniversary from Pawan ❤️";
-      replyElement.style.color = '#d6336c';
-      chatMessages.appendChild(replyElement);
+        const lowerMsg = msg.toLowerCase();
+        const patterns = ["happy", "hpy", "hapy", "happi", "hap","hi","hello","hii","thank","th"];
+        if (patterns.some(pat => lowerMsg.startsWith(pat))) {
+          const replyElement = document.createElement('div');
+          replyElement.textContent = "Happy Anniversary from Pawan ❤️";
+          replyElement.style.color = '#d6336c';
+          chatMessages.appendChild(replyElement);
+        }
+
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
     }
 
-    chatInput.value = '';
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-}
+    // 👧 Floating hearts hide on video play
+    const babyVideo = document.getElementById("babyVideo");
+    babyVideo.addEventListener("play", () => {
+      hearts.style.display = "none";
+    });
+    babyVideo.addEventListener("pause", () => {
+      hearts.style.display = "block";
+    });
+    babyVideo.addEventListener("ended", () => {
+      hearts.style.display = "block";
+    });
   </script>
+
   <footer class="footer-description">
-  This is a locally hosted server setup by <strong>iampavanyadav</strong>, developed using basic HTML, CSS, and JavaScript. The development and hosting environment runs on an Intel i5 M520 processor with 4GB of RAM.
-</footer>
+    This is a locally hosted server setup by <strong>iampavanyadav</strong>, developed using basic HTML, CSS, and JavaScript. The development and hosting environment runs on an Intel i5 M520 processor with 4GB of RAM.
+  </footer>
 </body>
 </html>
