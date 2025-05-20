@@ -230,23 +230,26 @@
     setInterval(createHeart, 300);
 
     // Chat box functionality
-    const chatMessages = document.getElementById('chatMessages');
-    const chatInput = document.getElementById('chatInput');
-
     function sendMessage() {
-      const msg = chatInput.value.trim();
-      if (msg) {
-        const messageElement = document.createElement('div');
-        messageElement.textContent = msg;
-        chatMessages.appendChild(messageElement);
-        chatInput.value = '';
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
+  const msg = chatInput.value.trim();
+  if (msg) {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = msg;
+    chatMessages.appendChild(messageElement);
+
+    const lowerMsg = msg.toLowerCase();
+    const patterns = ["happy", "hpy", "hapy", "happi", "hap"];
+    if (patterns.some(pat => lowerMsg.startsWith(pat))) {
+      const replyElement = document.createElement('div');
+      replyElement.textContent = "Happy Anniversary from Pawan ❤️";
+      replyElement.style.color = '#d6336c';
+      chatMessages.appendChild(replyElement);
     }
 
-    chatInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') sendMessage();
-    });
+    chatInput.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+}
   </script>
 </body>
 </html>
